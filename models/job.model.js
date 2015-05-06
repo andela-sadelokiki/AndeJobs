@@ -6,9 +6,9 @@ var jobSchema = new Schema({
 	details:{type: String},
 	Description:{
 		location: String,
-		date_posted: Date,
+		date_posted: { type: Date, required: true },
 		closing_date: Date,
-		apply_here: String
+		link: String
 	}
 
 
