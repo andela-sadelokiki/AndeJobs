@@ -20,24 +20,24 @@ exports.listUsers = function(req, res){
 	})
 }
 exports.viewUser = function(req, res){
-	User.findById(req.params.event_id, function(err, user){
+	User.findById(req.params.user_id, function(err, user){
 		if(err){
 			res.send(err);
 		}
 		res.json(user);
 	})
 }
+exports.updateUser = function(req, res){
+  User.findByIdAndUpdate(req.params.user_id, req.body, function(err, user){
+    if(err){
+      res.send(err);
+    }
+    res.json(user);
+  })
+}
 
-exports.deleteUsers = function(req, res){
-	User.remove(function(err, users){
-		if(err){
-			res.send(err);
-		}
-		res.json(users);
-	});
-};
 exports.deleteUser = function(req, res){
-	User.remove({_id: req.params.event_id}, function(err, user){
+	User.remove({_id: req.params.user_id}, function(err, user){
 		if(err){
 			res.send(err);
 		}
