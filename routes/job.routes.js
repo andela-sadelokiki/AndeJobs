@@ -2,16 +2,11 @@ module.exports = function(app) {
 
  	 var jobCtrl = require('../controllers/job-controller');
  	 
-    app.post('/postJob', jobCtrl.postJob);
-	  app.get('/listJobs', jobCtrl.listAllJobs);
-		app.get('/listJob/:job_id', jobCtrl.listOneJob);
-		app.put('/editJob/:job_id', jobCtrl.updateJob);
-		app.delete('/deleteJob', jobCtrl.deleteAllJobs);
-		app.delete('/deleteJob/:job_id',jobCtrl.deleteOneJob);
-
-		app.param('job_id', jobCtrl.listOneJob);
-		app.param('job_id', jobCtrl.updateJob);
-
-
-
+    app.post('/api/v1/job', jobCtrl.postJob);
+	  app.get('/api/v1/jobs', jobCtrl.listAllJobs);
+		app.get('/api/v1/jobs/:job_id', jobCtrl.listOneJob);
+		app.put('/api/v1/job/:job_id', jobCtrl.updateJob);
+		app.delete('/api/v1/jobs', jobCtrl.deleteAllJobs);
+		app.delete('/api/v1/jobs/:job_id',jobCtrl.deleteOneJob);
+    
 };
