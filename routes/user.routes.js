@@ -9,6 +9,5 @@ module.exports = function(app) {
     app.put('/api/v1/users/:user_id', userCtrl.updateUser);
 	  app.delete('/api/v1/users/:user_id', userCtrl.deleteUser);
 
-
-	}
+}
 
