@@ -28,34 +28,18 @@ exports.listOneJob = function(req, res){
 	})
 }
 exports.updateJob = function(req, res){
-	Job.findById(req.params.job_id, function(err, job){
-		if(err){
-			res.send(err);
-		}
-		job.title = req.body.title;
-		job.details = req.body.details;
-
-		job.save(function(err){
-			if (err){
-				res.send(err);
-			}
-			res.json({message: 'job updated'});
-		});
-	});
-
+  Job.findByIdAndUpdate(req.params.job_id, req.body, function(err, job){
+    if(err){
+      res.send(err);
+    }
+    res.json({message: 'job successfully updated'});
+  });
 };
-exports.deleteAllJobs = function(req, res){
-	Job.remove(function(err, jobs){
-		if(err){
-			res.send(err);
-		}
-		res.json(jobs);
-	});
-};
+
 exports.deleteOneJob = function(req, res){
 	Job.remove({_id: req.params.job_id}, function(err, job){
 		if(err){
-			res.send(err);
+			res.json(err);
 		}
 		res.json({message: 'Job deleted!'});
 	});
