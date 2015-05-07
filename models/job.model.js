@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var jobSchema = new Schema({
-	title: {type: String, required: 'Title is required'},
+	title: {type: String, required: true},
 	details:{type: String},
 	Description:{
 		location: String,

@@ -4,27 +4,32 @@ var Schema = mongoose.Schema;
 var userSchema= new Schema({
 	first_Name: {
 		type : String, 
-		required: "first name is required"
+		required: true
 	},
 	last_Name: {
 		type : String, 
-		required: "last name is required"
+		required: true
 	},
 	email_Address: {
 		type : String, 
-		required: "email address is required"
+		required: true,
+    unique: true
 	},
 	user_Name: {
 		type : String, 
-		required: "username is required"
+		required: true,
+    unique: true
+    
 	},
 	password: {
 		type : String, 
-		required: "password is required"
+		required: true
+    
 	},
 	mobile_Number: {
 		type : Number, 
-		required: "mobile number is required"
+		required: true,
+    unique: true
 	}
 
 });
