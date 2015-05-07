@@ -9,7 +9,6 @@ module.exports = function(app) {
 	  app.delete('/deleteUsers', userCtrl.deleteUsers);
 	  app.delete('/deleteUser/:user_id', userCtrl.deleteUser);
 
-	  //app.param('user_id', jobCtrl.listOneJo);
 
 	}
 

@@ -10,8 +10,6 @@ var jobSchema = new Schema({
 		closing_date: Date,
 		link: String
 	}
-
-
 });
+
 mongoose.model('Job', jobSchema);
-//exports.model('jobs', jobSchema);
