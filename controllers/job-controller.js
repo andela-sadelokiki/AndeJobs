@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 require('../models/job.model');
-var Job = mongoose.model('jobs');
+var Job = mongoose.model('Job');
 
 
 exports.postJob = function(req, res) {
@@ -8,7 +8,7 @@ exports.postJob = function(req, res) {
 		if(err){
 			res.send(err);
 		}
-		res.json(jobs);
+		res.json(job);
 	});
 };
 exports.listAllJobs = function(req, res){
@@ -20,7 +20,7 @@ exports.listAllJobs = function(req, res){
 	})
 }
 exports.listOneJob = function(req, res){
-	Job.findById(req.params.event_id, function(err, job){
+	Job.findById(req.params.job_id, function(err, job){
 		if(err){
 			res.send(err);
 		}
@@ -28,7 +28,7 @@ exports.listOneJob = function(req, res){
 	})
 }
 exports.updateJob = function(req, res){
-	Job.findById(req.params.event_id, function(err, job){
+	Job.findById(req.params.job_id, function(err, job){
 		if(err){
 			res.send(err);
 		}
@@ -53,10 +53,10 @@ exports.deleteAllJobs = function(req, res){
 	});
 };
 exports.deleteOneJob = function(req, res){
-	Job.remove({_id: req.params.event_id}, function(err, job){
+	Job.remove({_id: req.params.job_id}, function(err, job){
 		if(err){
 			res.send(err);
 		}
-		res.json(job);
+		res.json({message: 'Job deleted!'});
 	});
 };

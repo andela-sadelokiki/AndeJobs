@@ -1,10 +1,8 @@
-'use strict'
-require('./app')
-mongoose = require('mongoose'),
-//var Job = mongoose.model('Job');
+require('../models/job.model');
+var mongoose = require('mongoose');
+var Job = mangoose.model('jobs');
 
-var populateDatabase = function(count, callback){
-	for(var i=0; i< count; i++){
+
 		Job.create({
 			title: 'Recruitment Agent' + i,
 			details: 'Awesome recruiter(male/female) who can read minds and pick the best of the best',
@@ -16,7 +14,6 @@ var populateDatabase = function(count, callback){
 
 		}, callback);
 	}
-};
 
 describe('Job model', function(){
 	beforeEach(function(done){

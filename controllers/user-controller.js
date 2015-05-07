@@ -8,7 +8,7 @@ exports.createUser = function(req, res) {
 		if(err){
 			res.send(err);
 		}
-		res.json(users);
+		res.json(user);
 	});
 };
 exports.listUsers = function(req, res){
@@ -28,7 +28,7 @@ exports.viewUser = function(req, res){
 	})
 }
 
-exports.deleteAllUsers = function(req, res){
+exports.deleteUsers = function(req, res){
 	User.remove(function(err, users){
 		if(err){
 			res.send(err);
