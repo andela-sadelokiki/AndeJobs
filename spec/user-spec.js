@@ -10,10 +10,12 @@ describe('User model test:', function(){
 
 	beforeEach(function(done){
 		user = new User();
+		user2 = new User();
 		done();
 	});
 
-	describe('should not save if firstname field is not filled', function(){
+
+	describe('should not save if required field is not filled', function(){
 		it('should not save if firstname is not filled', function(done){
 			user.firstname = '';
 			user.save(function(error){
@@ -39,16 +41,40 @@ describe('User model test:', function(){
 			});
 		});
 
-		it('should save required field is filled', function(){
-			user.firstname = 'susan';
-			user.lastname = 'adelokiki';
-			user.email = 'susan.adelokiki@andela.co';
+		
+
+		// it('should save if required fields are filled', function(done){
+		// 	user.firstname = 'susan';
+		// 	user.lastname = 'adelokiki';
+		// 	user.email = 'susan.adelokiki@andela.co';
+		// 	user.password = 'honey';
+		// 	user.username = 'susana';
+		// 	user.mobilenumber = 8808080800;
+		// 	user.save(function(error){
+		// 		expect(error).toBeNull();
+		// 		done();
+		// 	});
+		// });
+
+		it('should not save if a unique field is duplicated', function(done) {
+			user.firstname = 'ladi';
+			user.lastname = 'adenusi';
+			user.email = 'ladi.adenusi@andela.co';
 			user.password = 'honey';
-			user.save(function(error){
-				expect(error).toBeNull();
+			user.username = 'ladisays';
+			user.mobilenumber = 6867267;
+			user.save();
+
+			user2.firstname = 'ladi';
+			user2.lastname = 'adenusi';
+			user2.email = 'ladi.adenusi@andela.co';
+			user2.password = 'honey';
+			user2.username = 'ladisays';
+			user2.mobilenumber = 6867267;
+			return user2.save(function(error) {
+				expect(error).not.toBeNull();
 				done();
 			});
 		});
-
 	});
-})
+});
