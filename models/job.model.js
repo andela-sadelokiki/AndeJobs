@@ -6,7 +6,7 @@ var jobSchema = new Schema({
 	details:{type: String},
 	location: String,
 	date_posted: { type: String},
-	closing_date: Date,
+	closing_date: String,
 	link: String
 	
 });
