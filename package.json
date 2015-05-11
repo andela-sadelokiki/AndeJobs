@@ -2,11 +2,11 @@
   "name": "Andejobs",
   "version": "1.0.0",
   "description": "Search engine for jobs at Andela, where people can search for jobs, apply, post jobs and get subscription to new job update.",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test-user": "./node_modules/.bin/jasmine-node --autotest spec/user-spec.js",
     "test-job": "./node_modules/.bin/jasmine-node --autotest spec/job-spec.js",
-    "start": "node app.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,10 @@
   "dependencies": {
     "body-parser": "^1.12.3",
     "express": "^4.12.3",
-    "mongoose": "^4.0.2"
-  }
+    "mongoose": "^4.0.2",
+    "jsonwebtoken": "0.4.0"
+  },
+   "engines": {
+        "node": ">=0.10.0"
+    }
 }
