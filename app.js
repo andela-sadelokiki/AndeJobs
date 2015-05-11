@@ -10,6 +10,4 @@ app.use(bodyParser.json());
 require('./routes/job.routes.js')(app);
 require('./routes/user.routes.js')(app);
 
-
-
 module.exports = app;
