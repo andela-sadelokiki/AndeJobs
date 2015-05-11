@@ -8,6 +8,5 @@ module.exports = function(app) {
 	  app.get('/api/v1/users/:user_id', userCtrl.viewUser);
     app.put('/api/v1/users/:user_id', userCtrl.updateUser);
 	  app.delete('/api/v1/users/:user_id', userCtrl.deleteUser);
-
 }
 

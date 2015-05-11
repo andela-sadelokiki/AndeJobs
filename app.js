@@ -11,8 +11,5 @@ require('./routes/job.routes.js')(app);
 require('./routes/user.routes.js')(app);
 
 
-var port = process.env.PORT || 3000; 
-app.listen(port);
-console.log('Magic happens on port ' + port);
 
 module.exports = app;
