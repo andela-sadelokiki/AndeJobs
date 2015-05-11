@@ -1,3 +1,5 @@
+'use strict';
+
 require('../models/job.model');
 
 var mongoose = require('mongoose');
