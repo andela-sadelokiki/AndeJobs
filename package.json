@@ -28,7 +28,16 @@
   "dependencies": {
     "body-parser": "^1.12.3",
     "express": "^4.12.3",
+<<<<<<< HEAD
     "mongoose": "^4.0.2"
   },
     
+=======
+    "mongoose": "^4.0.2",
+    "jsonwebtoken": "0.4.0"
+  },
+   "engines": {
+        "node": ">=0.10.0"
+    }
+>>>>>>> 65f298a086676b12715ad86360d794266c77b19c
 }
