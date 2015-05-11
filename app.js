@@ -3,7 +3,7 @@ var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var jwt        = require("jsonwebtoken");
-mongoose.connect('mongodb://localhost/myDatabase');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/myDatabase');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
