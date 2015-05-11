@@ -30,7 +30,8 @@ var userSchema= new Schema({
 		type : Number, 
 		required: true,
     unique: true
-	}
+	},
+	token: String
 
 });
 

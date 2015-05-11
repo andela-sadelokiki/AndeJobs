@@ -8,6 +8,7 @@ var jobSchema = new Schema({
 	date_posted: { type: String},
 	closing_date: String,
 	link: String
+  
 	
 });
 
