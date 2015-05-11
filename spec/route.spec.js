@@ -20,7 +20,7 @@ describe('Test for job route', function(){
  it('Test GET method for /api/v1/jobs', function(done){
    request
    .get('/api/v1/jobs')
-   .expect(201)
+   .expect(200)
    //.expect('Content-Type', 'application/json; charset=utf-8')
    .end(function(err, res){
      if(err){
@@ -29,25 +29,23 @@ describe('Test for job route', function(){
      console.log(res.body);
      done();
    });
+ });
   it('should make a POST request and successfully create a new user profile', function(done){
     var newUser = {
       firstname: 'susan',
-      lastname: 'adelokiki'
+      lastname: 'adelokiki',
       email: 'susanadelokiki@gmail.com',
       password: 'password',
-      username: 'susanna'
+      username: 'susanna',
       mobilenumber: 07011833492
     };
     request.post('/api/v1/users')
     .send(newUser)
-    .expect({lastname: 'adelokiki'})
-    .expect(200)
-    .end(function(err, res){
-      if(err){
-        return done(err);
-      }
+    .expect('Content-Type', /json/)
+     .end(function(err, res){
+      expect(err).toBe(null);
       done();
     });
+     
   });
-
  });
