@@ -2,11 +2,11 @@
   "name": "Andejobs",
   "version": "1.0.0",
   "description": "Search engine for jobs at Andela, where people can search for jobs, apply, post jobs and get subscription to new job update.",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test-user": "./node_modules/.bin/jasmine-node --autotest spec/user-spec.js",
     "test-job": "./node_modules/.bin/jasmine-node --autotest spec/job-spec.js",
-    "start": "node app.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -14,6 +14,9 @@
   },
   "author": "Adelokiki Susan Anuoluwapo",
   "license": "ISC",
+  "engines": {
+      "node": "0.12.2"
+  },
   "bugs": {
     "url": "https://github.com/andela-sadelokiki/Andejobs/issues"
   },
@@ -27,7 +30,5 @@
     "express": "^4.12.3",
     "mongoose": "^4.0.2"
   },
-    "engines": {
-      "node": "0.12.2"
-  },
+    
 }
