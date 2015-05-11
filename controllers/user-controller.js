@@ -46,3 +46,31 @@ exports.deleteUser = function(req, res){
 		res.json(user);
 	});
 };
+exports.authenticate = function(req, res){
+User.findOne({firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email, username: req.body.username, mobilenumber:req.body.mobilenumber, password: req.body.password}, function(err, user) {
+  if (err) {
+    res.json({
+      type: false,
+      data: "Error occured: " + err
+  });
+} else 
+  {
+    if (user) {
+      res.json({
+       type: true,
+       data: user,
+       token: user.token
+    }); 
+    } else {
+        res.json({
+          type: false,
+          data: "Incorrect email/password"
+        });    
+        }
+    }
+});
+};
+exports.signIn = function(req, res){
+
+}
+
