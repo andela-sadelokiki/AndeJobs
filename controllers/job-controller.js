@@ -1,3 +1,5 @@
+'use strict';
+
 var mongoose = require('mongoose');
 require('../models/job.model');
 var Job = mongoose.model('Job');
