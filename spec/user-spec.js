@@ -3,7 +3,7 @@
 require('../models/user.model');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/myDatabase');;
+//mongoose.connect('mongodb://localhost/myDatabase');;
 User = mongoose.model('users');
 
 var user, user2
