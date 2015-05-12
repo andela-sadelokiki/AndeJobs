@@ -3,6 +3,8 @@
 var mongoose = require('mongoose');
 require('../models/user.model');
 var User = mongoose.model('users');
+var jwt = require('jsonwebtoken');
+var secret = "mysecretkey";
 
 
 exports.createUser = function(req, res) {
@@ -41,36 +43,35 @@ exports.updateUser = function(req, res){
 exports.deleteUser = function(req, res){
 	User.remove({_id: req.params.user_id}, function(err, user){
 		if(err){
-			res.send(err);
 		}
 		res.json(user);
 	});
 };
-exports.authenticate = function(req, res){
-User.findOne({firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email, username: req.body.username, mobilenumber:req.body.mobilenumber, password: req.body.password}, function(err, user) {
-  if (err) {
-    res.json({
-      type: false,
-      data: "Error occured: " + err
-  });
-} else 
-  {
-    if (user) {
-      res.json({
-       type: true,
-       data: user,
-       token: user.token
-    }); 
-    } else {
-        res.json({
-          type: false,
-          data: "Incorrect email/password"
-        });    
-        }
-    }
-});
-};
-exports.signIn = function(req, res){
 
-}
+exports.verifyUser = function(req, res){
+  User.findOne({ firstname: req.body.firstname }, function(err, user) {
+    if (err){
+      res.status(500).send(err);
+    }
+    if (user.email != req.body.email) {
+      res.json({ success: false, message: 'Authentication failed. User not found.' });
+    } 
+    else if (user) {
+      if (user.password != req.body.password) {
+        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+      } 
+      else {
+        var token = jwt.sign(user, app.get('et'), {
+          expiresInMinutes: 1440 
+        });
+        res.json({
+          success: true,
+          message: 'Enjoy your token!',
+          token: token
+        });
+      }   
+    }
+  });
+};
+
 
