@@ -48,7 +48,7 @@ exports.deleteUser = function(req, res){
 	});
 };
 
-/*exports.verifyUser = function(req, res){
+exports.verifyUser = function(req, res){
   User.findOne({ firstname: req.body.firstname }, function(err, user) {
     if (err){
       res.status(500).send(err);
@@ -61,7 +61,7 @@ exports.deleteUser = function(req, res){
         res.json({ success: false, message: 'Authentication failed. Wrong password.' });
       } 
       else {
-        var token = jwt.sign(user, app.get('et'), {
+        var token = jwt.sign(user, app.get('secret'), {
           expiresInMinutes: 1440 
         });
         res.json({
@@ -72,6 +72,6 @@ exports.deleteUser = function(req, res){
       }   
     }
   });
-};*/
+};
 
 
