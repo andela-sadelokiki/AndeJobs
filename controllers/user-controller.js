@@ -48,12 +48,12 @@ exports.deleteUser = function(req, res){
 	});
 };
 
-exports.verifyUser = function(req, res){
+/*exports.verifyUser = function(req, res){
   User.findOne({ firstname: req.body.firstname }, function(err, user) {
     if (err){
       res.status(500).send(err);
     }
-    if (user.email != req.body.email) {
+    if (!user) {
       res.json({ success: false, message: 'Authentication failed. User not found.' });
     } 
     else if (user) {
@@ -66,12 +66,12 @@ exports.verifyUser = function(req, res){
         });
         res.json({
           success: true,
-          message: 'Enjoy your token!',
+          message: 'Here is your token!',
           token: token
         });
       }   
     }
   });
-};
+};*/
 
 
