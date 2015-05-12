@@ -1,14 +1,25 @@
-module.exports = function(app) {
+'use strict'
 
- 	 
- 	 var userCtrl = require('../controllers/user-controller');
+var express = require('express');
+var router = express.Router();
 
-    app.post('/authenticate', userCtrl.verifyUser);
-	  app.post('/api/v1/users', userCtrl.createUser);
-	  app.get('/api/v1/users', userCtrl.listUsers);
-	  app.get('/api/v1/users/:user_id', userCtrl.viewUser);
-    app.put('/api/v1/users/:user_id', userCtrl.updateUser);
-	  app.delete('/api/v1/users/:user_id', userCtrl.deleteUser);
-    
-}
+module.exports = function(app){
+  var userCtrl = require('../controllers/user-controller');   
 
+  router.route('/users')
+    // .get(userCtrl.verifyToken, userCtrl.listUsers)
+    .post(userCtrl.createUser)
+    .delete(userCtrl.deleteUser, userCtrl.verifyToken)
+
+  router.route("/:user_id")
+    .get(userCtrl.viewUser)
+    .put(userCtrl.updateUser)
+
+  router.route("/authenticate")
+    .post(userCtrl.verifyUser)
+
+  router.route("/authenticateToken")
+    .post(userCtrl.verifyToken)
+
+app.use('/api/v1', router)
+};

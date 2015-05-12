@@ -4,17 +4,24 @@ var mongoose = require('mongoose');
 require('../models/user.model');
 var User = mongoose.model('users');
 var jwt = require('jsonwebtoken');
+var bcrypt = require('bcrypt');
 var secret = "mysecretkey";
 
 
 exports.createUser = function(req, res) {
-	User.create(req.body, function(err, user){
-		if(err){
-			res.send(err);
-		}
-		res.json(user);
-	});
+  var user = req.body;
+  bcrypt.hash(user.password, 10, function(err, hash){
+    user.password = hash;
+
+    User.create(user, function(err, user){
+      if(err){
+        res.send(err);
+      }
+      res.json(user);
+    });
+  });
 };
+
 exports.listUsers = function(req, res){
 	User.find(function(err, users){
 		if(err){
@@ -49,19 +56,16 @@ exports.deleteUser = function(req, res){
 };
 
 exports.verifyUser = function(req, res){
-  User.findOne({ firstname: req.body.firstname }, function(err, user) {
+  User.findOne({email:req.body.email}, function(err, user) {
     if (err){
       res.status(500).send(err);
     }
-    if (!user) {
-      res.json({ success: false, message: 'Authentication failed. User not found.' });
-    } 
-    else if (user) {
+    if(user.email){
       if (user.password != req.body.password) {
         res.json({ success: false, message: 'Authentication failed. Wrong password.' });
       } 
       else {
-        var token = jwt.sign(user, app.get('secret'), {
+        var token = jwt.sign(user, secret, {
           expiresInMinutes: 1440 
         });
         res.json({
@@ -69,9 +73,33 @@ exports.verifyUser = function(req, res){
           message: 'Here is your token!',
           token: token
         });
-      }   
+      } 
+    } 
+    else {
+      res.json({ success: false, message: 'Authentication failed. User not found.' });  
     }
   });
 };
+
+exports.verifyToken = function(req, res){
+  var token = req.body.token || req.query.token || req.headers[x-access-token];
+    if(token){
+      jwt.verify(token, secret, function(err, decoded){
+        if(err){
+          return res.json({success:false, message: "Failed to verify token"});
+        }
+        else {
+          res.decoded = decoded;
+          next();
+        }
+      });
+    }
+      else{
+        return res.status(403).send({
+          success:false,
+          message: 'no token provided'
+        });
+      }
+    } 
 
 
