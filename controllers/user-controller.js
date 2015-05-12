@@ -47,7 +47,7 @@ exports.deleteUser = function(req, res){
 	});
 };
 exports.authenticate = function(req, res){
-User.findOne({firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email, username: req.body.username, mobilenumber:req.body.mobilenumber, password: req.body.password}, function(err, user) {
+User.findOne({email: req.body.email}, function(err, user) {
   if (err) {
     res.json({
       type: false,
