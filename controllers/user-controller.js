@@ -60,26 +60,26 @@ exports.verifyUser = function(req, res){
     if (err){
       res.status(500).send(err);
     }
-    if(user.email){
-      if (user.password != req.body.password) {
-        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
-      } 
-      else {
+    if(user){
+      bcrypt.compare(req.body.password, user.password, function(err, valid){
+        if(err){
+          res.status(500).send(err);
+        }
+        if(!valid){
+          res.status(401).send("Incorrect password");
+        }
         var token = jwt.sign(user, secret, {
-          expiresInMinutes: 1440 
+          expiresInMinutes: 1440
         });
         res.json({
-          success: true,
-          message: 'Here is your token!',
-          token: token
+          success:true,
+          message:'Here is your token',
+          token:token
         });
-      } 
-    } 
-    else {
-      res.json({ success: false, message: 'Authentication failed. User not found.' });  
-    }
+      })
+    };
   });
-};
+}
 
 
 exports.verifyToken = function(req, res){
@@ -102,6 +102,4 @@ exports.verifyToken = function(req, res){
         });
       }
     } 
-
->>>>>>> master
 

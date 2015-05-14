@@ -7,7 +7,7 @@ module.exports = function(app){
   var userCtrl = require('../controllers/user-controller');   
 
   router.route('/users')
-    // .get(userCtrl.verifyToken, userCtrl.listUsers)
+    .get(userCtrl.verifyToken, userCtrl.listUsers)
     .post(userCtrl.createUser)
     .delete(userCtrl.deleteUser, userCtrl.verifyToken)
 
