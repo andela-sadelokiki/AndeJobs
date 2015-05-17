@@ -6,7 +6,7 @@ var Job = mongoose.model('Job');
 
 
 exports.postJob = function(req, res) {
-	Job.create(req.body, function(err, job){
+	Job.create(req.body, function(err, job) {
 		if(err){
 			res.send(err);
 		}
@@ -19,7 +19,7 @@ exports.listAllJobs = function(req, res){
 			res.send(err);
 		}
 		res.json(jobs);
-	})
+	});
 }
 exports.listOneJob = function(req, res){
 	Job.findById(req.params.job_id, function(err, job){
