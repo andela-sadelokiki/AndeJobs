@@ -21,5 +21,5 @@ module.exports = function(app){
   router.route("/authenticateToken")
     .post(userCtrl.verifyToken)
 
-app.use('/api/v1', router)
+app.use('/api', router)
 };
