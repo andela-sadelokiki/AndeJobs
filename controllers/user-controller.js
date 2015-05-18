@@ -63,9 +63,6 @@ exports.verifyUser = function(req, res){
     if(user){
       bcrypt.compare(req.body.password, user.password, function(err, valid){
         if(err){
-          res.status(500).send(err);
-        }
-        if(!valid){
           res.status(401).send("Incorrect password");
         }
         var token = jwt.sign(user, secret, {
