@@ -25,7 +25,7 @@ exports.createUser = function(req, res) {
 exports.listUsers = function(req, res){
 	User.find(function(err, users){
 		if(err){
-			res.send(err);
+			return res.send(err);
 		}
 		res.json(users);
 	})
@@ -74,7 +74,8 @@ exports.verifyUser = function(req, res){
         res.json({
           success:true,
           message:'Here is your token',
-          token:token
+          token:token,
+          isAdmin: user.isAdmin
         });
       })
     };
