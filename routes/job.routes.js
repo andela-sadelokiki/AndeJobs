@@ -1,11 +1,20 @@
+
+var express = require('express');
+var router = express.Router();
 module.exports = function(app) {
 
  	 var jobCtrl = require('../controllers/job-controller');
- 	 
-    app.post('/api/v1/jobs', jobCtrl.postJob);
-	  app.get('/api/v1/jobs', jobCtrl.listAllJobs);
-		app.get('/api/v1/jobs/:job_id', jobCtrl.listOneJob);
-		app.put('/api/v1/jobs/:job_id', jobCtrl.updateJob);
-		app.delete('/api/v1/jobs/:job_id',jobCtrl.deleteOneJob);
 
+   router.route('/jobs')
+    .get(jobCtrl.listAllJobs)
+    .post(jobCtrl.postJob)
+    
+
+  router.route("/jobs/:job_id")
+    .get(jobCtrl.listOneJob)
+    .put(jobCtrl.updateJob)
+    .delete(jobCtrl.deleteOneJob)
+
+app.use('/api', router)
 };
+
