@@ -9,11 +9,11 @@ module.exports = function(app){
   router.route('/users')
     .get(userCtrl.listUsers)
     .post(userCtrl.createUser)
-    .delete(userCtrl.deleteUser, userCtrl.verifyToken)
 
-  router.route("/:user_id")
+  router.route("/users/:user_id")
     .get(userCtrl.viewUser)
     .put(userCtrl.updateUser)
+    .delete(userCtrl.deleteUser, userCtrl.verifyToken)
 
   router.route("/authenticate")
     .post(userCtrl.verifyUser)
