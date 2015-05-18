@@ -69,8 +69,8 @@ exports.verifyUser = function(req, res){
         res.json({
           success:true,
           message:'Here is your token',
-          token:token,
-          isAdmin: user.isAdmin
+          token:token
+          // isAdmin: user.isAdmin
         });
       })
     };
