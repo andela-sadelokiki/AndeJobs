@@ -65,9 +65,7 @@ exports.verifyUser = function(req, res){
         if(err){
           res.status(401).send("Incorrect password");
         }
-        var token = jwt.sign(user, secret, {
-          expiresInMinutes: 1440
-        });
+        var token = jwt.sign(user, secret);
         res.json({
           success:true,
           message:'Here is your token',
