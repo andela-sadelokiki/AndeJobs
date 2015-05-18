@@ -19,21 +19,17 @@ var userSchema= new Schema({
 		type : String, 
 		required: true,
     unique: true
+    
 	},
 	password: {
 		type : String, 
-		required: true,
-		select: false
+		required: true
     
 	},
 	mobilenumber: {
 		type : Number, 
 		required: true,
     unique: true
-	},
-	isAdmin:{
-		type: Boolean,
-		default: false
 	},
 	token: String
 
