@@ -25,7 +25,7 @@ exports.createUser = function(req, res) {
 exports.listUsers = function(req, res){
 	User.find(function(err, users){
 		if(err){
-			return res.send(err);
+			 res.send(err);
 		}
 		res.json(users);
 	})
