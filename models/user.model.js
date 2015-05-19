@@ -31,8 +31,12 @@ var userSchema= new Schema({
 		required: true,
     unique: true
 	},
-	token: String
 
+	token: String,
+	isAdmin:{
+		type: Boolean,
+		default: false
+	}
 });
 
 mongoose.model('users', userSchema);

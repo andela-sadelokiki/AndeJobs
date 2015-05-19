@@ -11,7 +11,7 @@ module.exports = function(app){
     .post(userCtrl.createUser)
     .delete(userCtrl.deleteUser, userCtrl.verifyToken)
 
-  router.route("/:user_id")
+  router.route("/users/:user_id")
     .get(userCtrl.viewUser)
     .put(userCtrl.updateUser)
 
