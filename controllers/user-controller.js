@@ -6,6 +6,7 @@ var User = mongoose.model('user');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 var secret = "mysecretkey";
+var _ = require("lodash");
 
 // var susan = new User({_id: 0,name:'susan',age:22});
 // susan.save(function(err){
@@ -68,11 +69,20 @@ exports.viewUser = function(req, res){
 };
 
 exports.updateUser = function(req, res){
-  User.findByIdAndUpdate(req.params.user_id, req.body, function(err, user){
+  User.findById(req.params.user_id, function(err, user){
     if(err){
       res.send(err);
+    } else {
+
+      user = _.extend(user, req.body);
+      user.save(function(err, user){
+        if (err) {
+          res.sen(err);
+        } 
+
+        res.json(user);
+      })
     }
-    res.json(user);
   });
 };
 
