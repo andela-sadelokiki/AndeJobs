@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose');
 require('../models/job.model');
-var Job = mongoose.model('Job');
+var Job = mongoose.model('job');
 
 exports.postJob = function(req, res) {
 	Job.create(req.body, function(err, job) {
@@ -28,7 +28,7 @@ exports.listOneJob = function(req, res){
 			res.send(err);
 		}
 		res.json(job);
-	})
+	});
 };
 
 exports.updateJob = function(req, res){
@@ -36,7 +36,7 @@ exports.updateJob = function(req, res){
     if(err){
       res.send(err);
     }
-    res.json({message: 'job successfully updated'});
+    res.status(200).json(job);
   });
 };
 

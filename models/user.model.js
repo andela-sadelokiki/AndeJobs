@@ -19,26 +19,27 @@ var userSchema= new Schema({
 		type : String, 
 		required: true,
     unique: true
-    
-	},
+  },
 	password: {
 		type : String, 
 		required: true
-    
-	},
+  },
 	mobilenumber: {
 		type : Number, 
 		required: true,
     unique: true
 	},
-
 	token: String,
 	isAdmin:{
 		type: Boolean,
 		default: false
-	}
+	},
+	appliedFor:[{
+		type:Schema.ObjectId,
+		ref:'job'
+	}]
 });
 
-mongoose.model('users', userSchema);
+mongoose.model('user', userSchema);
 
 

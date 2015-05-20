@@ -4,7 +4,7 @@ require('../models/job.model');
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/myDatabase');;
-var Job = mongoose.model('Job'),
+var Job = mongoose.model('job'),
 myJob;
 
 describe('Job model test', function(){
