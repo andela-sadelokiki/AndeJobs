@@ -7,31 +7,31 @@ var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 var secret = "mysecretkey";
 
-// var susan = new User({_id: 0,name:'susan',age:22});
-// susan.save(function(err){
-//   if(err){
-//     return handleError(err);
-//   }
-//   var job1 = new job({
-//     title: "Software Developer",
-//     appliedBy: susan._id
-//   });
-//   job1.save(function(err){
-//     if(err){
-//       return handleError(err);
-//     }
-//   });
-// });
+var susan = new User({_id: 0,name:'susan',age:22});
+susan.save(function(err){
+  if(err){
+    return handleError(err);
+  }
+  var job1 = new job({
+    title: "Software Developer",
+    appliedBy: susan._id
+  });
+  job1.save(function(err){
+    if(err){
+      return handleError(err);
+    }
+  });
+});
 
-// job
-// .findOne({title:"Software Developer"})
-// .populate('appliedBy')
-// .exec(function(err, job){
-//   if(err){
-//     return handleError(err);
-//     console.log('The creator is ', story._creator.name);
-//   }
-// })
+job
+.findOne({title:"Software Developer"})
+.populate('appliedBy')
+.exec(function(err, job){
+  if(err){
+    return handleError(err);
+    console.log('The creator is ', story._creator.name);
+  }
+})
 
 
 

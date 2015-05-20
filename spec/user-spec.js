@@ -50,8 +50,6 @@ describe('User model test:', function(){
       });
     });
 
-    it
-
     it('should not save if a unique field is duplicated', function(done) {
       user.firstname = 'ladi';
       user.lastname = 'adenusi';
