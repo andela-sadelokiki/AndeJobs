@@ -17,6 +17,15 @@ module.exports = function(app){
     .put(jobCtrl.updateJob)
     .delete(jobCtrl.deleteOneJob)
 
+  router.route('/jobs/:job_id/apply')
+    .post(jobCtrl.apply)
+
+  router.route('/jobs/:job_id/applications')
+    .get(jobCtrl.getApplications)
+
+  router.route('/jobs/:job_id/applicants')
+    .get(jobCtrl.getApplicants)
+
 app.use('/api', router)
 };
 
