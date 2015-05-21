@@ -90,7 +90,7 @@ exports.deleteUser = function(req, res){
   User.remove({_id: req.params.user_id}, function(err, user){
     if(err){
     }
-    res.json(user);
+    res.json({user: user, message: 'User removed successfully'});
   });
 };
 
@@ -134,11 +134,12 @@ exports.verifyToken = function(req, res){
         }
       });
     }
-      else{
-        return res.status(403).send({
-          success:false,
-          message: 'no token provided'
-        });
-      }
-    };
+    else{
+      return res.status(403).send({
+        success:false,
+        message: 'no token provided'
+      });
+    }
+  };
+
 
