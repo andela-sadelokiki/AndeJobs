@@ -20,7 +20,7 @@ module.exports = function(app){
   router.route('/jobs/:job_id/apply')
     .post(jobCtrl.apply)
 
-  router.route('/jobs/:job_id/applications')
+  router.route('/jobs/:user_id/applications')
     .get(jobCtrl.getApplications)
 
   router.route('/jobs/:job_id/applicants')
