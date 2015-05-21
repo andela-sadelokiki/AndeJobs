@@ -50,10 +50,13 @@ exports.deleteOneJob = function(req, res){
 };
 
 exports.apply = function(req, res){
+	console.log('params',typeof(req.params.job_id));
+
 	Job.findById(req.params.job_id, function(err,job){
 		if(err){
 			res.json(err);
 		}
+
 		var applicants = job.appliedBy.addToSet(req.body.user_id);
 		if(!applicants.length){
 			res.status(400).json({message: "Multiple application not permitted"});

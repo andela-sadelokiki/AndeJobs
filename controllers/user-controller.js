@@ -8,34 +8,6 @@ var bcrypt = require('bcrypt');
 var secret = "mysecretkey";
 var _ = require("lodash");
 
-// var susan = new User({_id: 0,name:'susan',age:22});
-// susan.save(function(err){
-//   if(err){
-//     return handleError(err);
-//   }
-//   var job1 = new job({
-//     title: "Software Developer",
-//     appliedBy: susan._id
-//   });
-//   job1.save(function(err){
-//     if(err){
-//       return handleError(err);
-//     }
-//   });
-// });
-
-// job
-// .findOne({title:"Software Developer"})
-// .populate('appliedBy')
-// .exec(function(err, job){
-//   if(err){
-//     return handleError(err);
-//     console.log('The creator is ', story._creator.name);
-//   }
-// })
-
-
-
 exports.createUser = function(req, res) {
   var user = req.body;
   bcrypt.hash(user.password, 10, function(err, hash){
@@ -81,7 +53,7 @@ exports.updateUser = function(req, res){
         } 
 
         res.json(user);
-      })
+      });
     }
   });
 };
