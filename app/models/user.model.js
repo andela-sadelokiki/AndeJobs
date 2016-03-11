@@ -1,6 +1,9 @@
+var config = require("../../config/config.js")
 var mongoose = require('mongoose');
+var jwt = require('jsonwebtoken');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
+var crypto = require('crypto');
 
 var userSchema = new Schema({
   firstname: {
@@ -21,14 +24,13 @@ var userSchema = new Schema({
     required: true,
     unique: true
   },
-  password: {
+  salt: {
     type: String,
-    required: true
+    required: 'Provide password'
   },
-  mobilenumber: {
-    type: Number,
-    required: true,
-    unique: true
+  hash: {
+    type: String,
+    required: 'Provide password'
   },
   token: String,
   isAdmin: {
@@ -41,24 +43,25 @@ var userSchema = new Schema({
   }]
 });
 
-userSchema.pre('save', function(next) {
-  var user = this;
+userSchema.methods.setPassword = function(password) {
+  this.salt = crypto.randomBytes(16).toString('hex');
+  this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
+};
+userSchema.methods.validPassword = function(password) {
+  var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
+  return this.hash === hash;
+};
 
-  if (!user.isModified('password')) {
-    return next();
-  }
-  bcrypt.hash(user.password, null, null, function(err, hash) {
-    if (err) {
-      return next(err);
-    }
-    user.password = hash;
-    next();
-  });
-});
-
-userSchema.methods.comparePassword = function(password) {
-  var user = this;
-  return bcrypt.compareSync(password, user.password);
+userSchema.methods.generateJWT = function() {
+  var today = new Date();
+  var exp = new Date(today);
+  exp.setDate(today.getDate() + 60);
+  var token = jwt.sign({
+    username: this.username,
+    email: this.email,
+    exp: parseInt(exp.getTime() / 1000),
+  }, config.secret);
+  return token;
 };
 
 module.exports = mongoose.model('User', userSchema);
