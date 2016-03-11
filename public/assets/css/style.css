@@ -95,3 +95,45 @@ p.home {
   font-size: x-large;
   font-family: inherit;
 }
+
+.signuppage {
+  margin-left: 1em;
+  padding-top: 1em;
+}
+
+.register {
+  margin-left: 20em;
+  margin-top: 1em;
+}
+
+.welcome {
+  height: 15em;
+  background-color: #696969;
+  margin-top: -1em;
+  margin-left: -1em;
+}
+
+.links {
+  width: 313px;
+  height: 36em;
+  /*background-color: grey;*/
+  /*background-color: rgba(0, 0, 0, 0.4);*/
+  margin-left: -1em;
+  position: absolute;
+}
+
+.case {
+  margin: 0 auto;
+  height: 150px;
+  width: 150px;
+  background-color: inherit;
+  padding-top: 2em
+}
+
+.name {
+  text-align: center
+}
+
+.search {
+  padding-top: 2em
+}
