@@ -1,0 +1,26 @@
+<div class="parallax-container signup">
+  <div class="parallax"><img src="../assets/images/online-job-search.jpg"></div>
+  <div class="signupform">
+    <div class="row">
+      <h5 class="signuppage">Login</h5>
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="icon_prefix" type="text" ng-model="user.username" class="validate">
+            <label for="icon_prefix">Username</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">lock</i>
+            <input id="password" type="password" ng-model="user.password" class="validate">
+            <label for="password">Password</label>
+          </div>
+        </div>
+      </form>
+      <a class="waves-effect waves-light btn register" ng-click="signin()">Login</a>
+      <p class="center-align">Don't have an account?<a href="/#/signup">Sign Up</a></p>
+    </div>
+  </div>
+</div>
