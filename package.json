@@ -29,8 +29,9 @@
     "bcrypt": "^0.8.5",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.12.3",
+    "crypto": "0.0.3",
     "express": "^4.12.3",
-    "jsonwebtoken": "^5.0.0",
+    "jsonwebtoken": "^5.5.4",
     "lodash": "^3.9.1",
     "mongoose": "^4.0.2",
     "mongoose-schema-extend": "^0.1.7"
