@@ -2,7 +2,7 @@
 
 var app = angular.module('Andejobs', ['ui.router', 'ngStorage']);
 
-app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+app.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $httpProvider, $urlRouterProvider, $locationProvider) {
 
   $stateProvider
     .state('home', {
@@ -35,6 +35,67 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
         }
       }
     })
+    .state('login', {
+      url: '/login',
+      views: {
+        '': {
+          templateUrl: 'app/partials/nav.view.html',
+          controller: 'UserCtrl'
+        },
+        'theView@login': {
+          templateUrl: 'app/partials/signin.view.html',
+          controller: 'UserCtrl'
+        }
+      }
+    })
+    .state('dashboard', {
+      url: '/dashboard',
+      views: {
+        '': {
+          templateUrl: 'app/partials/nav.view.html',
+          controller: 'UserCtrl'
+        },
+        'theView@dashboard': {
+          templateUrl: 'app/partials/dashboard.view.html',
+          controller: 'UserCtrl'
+        }
+      }
+    })
   $urlRouterProvider.otherwise('/');
   // $locationProvider.html5Mode(true);
+
+  $httpProvider.interceptors.push(['$q', '$location', '$window', function($q, $location, $window) {
+    return {
+      'request': function(config) {
+        config.headers = config.headers || {};
+        if ($window.sessionStorage.token) {
+          config.headers.Authorization = $window.sessionStorage.token;
+        }
+        return config;
+      },
+      'responseError': function(response) {
+        if (response.status === 401 || response.status === 403) {
+          $location.path('/login');
+        }
+        return $q.reject(response);
+      }
+    };
+  }]);
+}])
+
+.run(['$rootScope', '$location', '$window', function($rootScope, $location, $window) {
+  $rootScope.$on('routeChangeStart', function(event, to) {
+    if ($window.sessionStorage.refUrl && $window.sessionStorage.token) {
+      var ref = $window.sessionStorage.refUrl;
+      $window.sessionStorage.removeItem('refUrl');
+      $location.url(ref);
+    }
+    if (to.data && to.data.requiresLogin) {
+      if (!($window.sessionStorage.token || $location.search().token)) {
+        event.preventDefault();
+        $window.sessionStorage.refUrl = $location.url();
+        $location.path('/login');
+      }
+    }
+  });
 }]);
