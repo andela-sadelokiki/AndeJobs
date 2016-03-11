@@ -1,81 +1,90 @@
 'use strict';
 
-var User = require('../models/user.model');
+// var User = require('../models/user.model');
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
 var jwt = require('jsonwebtoken');
 var db = require('../../config/config');
 
 exports.signup = function(req, res) {
-  var user = new User();
-  user.firstname = req.body.firstname;
-  user.lastname = req.body.lastname;
-  user.email = req.body.email;
-  user.password = req.body.password;
-  user.username = req.body.username;
-  user.mobilenumber = req.body.mobilenumber;
-
-  user.save(function(err, user) {
-    if (!req.body.firstname || !req.body.lastname || !req.body.email || !req.body.password || !req.body.username || !req.body.mobilenumber) {
-      console.log(err, 'err');
-      return res.status(401).send({
-        success: false,
-        message: 'Invalid Registration details'
+  console.log(req, "req here");
+  if (!req.body.firstname || !req.body.lastname || !req.body.username || !req.body.email || !req.body.password) {
+    console.log(err, 'err');
+    return res.status(401).send({
+      success: false,
+      message: 'Invalid Registration details'
+    });
+  }
+  User.findOne({
+    username: req.body.username
+  }, function(err, user) {
+    if (err) {
+      return next(err);
+    }
+    if (user) {
+      return res.status(400).json({
+        message: 'User already exists, login'
       });
-    } else if (err) {
-      if (err.code === 11000) {
-        return res.status(401).send({
-          success: false,
-          message: 'User already exists'
-        });
-      } else {
-        return res.status(401).send(err);
-      }
     } else {
-      user.token = jwt.sign(user, db.secret, {
-        expiresInSeconds: 1440
-      });
-      user.save(function(err, newUser) {
-        res.json({
+      var newUser = new User();
+      newUser.firstname = req.body.firstname;
+      newUser.lastname = req.body.lastname;
+      newUser.username = req.body.username;
+      newUser.email = req.body.email;
+      newUser.setPassword(req.body.password);
+      newUser.save(function(err, user) {
+        if (err) {
+          console.log(err, "error found");
+          res.status(400).json({
+            success: false,
+            message: 'Creation failed'
+          });
+        }
+        console.log(user, 'user created');
+        res.status(200).json({
+          token: user.generateJWT(),
+          user: user.username,
+          id: user._id,
           success: true,
-          user: newUser,
-          message: 'User successsfully registered'
+          message: 'User registered'
         });
       });
     }
   });
+
 };
 
 exports.login = function(req, res) {
+  if (!req.body.username || !req.body.password) {
+    return res.status(400).json({
+      message: 'Please fill out all fields; username and password'
+    });
+  }
   User.findOne({
-      username: req.body.username
-    })
-    .select('username password')
-    .exec(function(err, user) {
-      if (err) {
-        throw err;
-      } else if (!user) {
-        return res.status(401).send({
-          success: false,
-          message: 'user not found'
+    username: req.body.username
+  }, function(err, user) {
+    if (err) {
+      res.status(400).json(err);
+    }
+    if (user) {
+      if (user.validPassword(req.body.password)) {
+        return res.status(200).json({
+          id: user._id,
+          success: true,
+          message: 'token Created',
+          token: user.generateJWT(),
         });
       } else {
-        var validPassword = user.comparePassword(req.body.password);
-        if (!validPassword) {
-          return res.status(401).send({
-            success: false,
-            message: 'Authentication failed. Wrong password.'
-          });
-        } else {
-          // var token = jwt.sign(user, db.secret, {
-          //   expiresInMinutes: 1440
-          // });
-          res.json({
-            token: user.token,
-            data: user
-          });
-          // });
-        }
+        return res.status(401).json({
+          message: 'Enter a valid password'
+        });
       }
-    });
+    } else {
+      return res.status(401).json({
+        message: 'Username not found'
+      });
+    }
+  });
 };
 
 exports.middleware = function(req, res, next) {
