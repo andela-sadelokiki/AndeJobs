@@ -83,7 +83,7 @@ app.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', '$locationP
                 },
                 'theView@jobs': {
                     templateUrl: 'app/partials/jobs.view.html',
-                    controller: 'UserCtrl'
+                    controller: 'JobCtrl'
                 }
             }
         })
@@ -100,7 +100,32 @@ app.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', '$locationP
                 }
             }
         })
-
+        .state('job', {
+            url: '/job',
+            views: {
+                '': {
+                    templateUrl: 'app/partials/nav.view.html',
+                    controller: 'UserCtrl'
+                },
+                'theView@job': {
+                    templateUrl: 'app/partials/job.view.html',
+                    controller: 'JobCtrl'
+                }
+            }
+        })
+        .state('apply', {
+            url: '/apply',
+            views: {
+                '': {
+                    templateUrl: 'app/partials/nav.view.html',
+                    controller: 'UserCtrl'
+                },
+                'theView@apply': {
+                    templateUrl: 'app/partials/apply.view.html',
+                    controanuoluwapoller: 'JobCtrl'
+                }
+            }
+        })
 
     $urlRouterProvider.otherwise('/');
     // $locationProvider.html5Mode(true);
