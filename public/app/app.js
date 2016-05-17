@@ -87,6 +87,20 @@ app.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', '$locationP
                 }
             }
         })
+        .state('createjob', {
+            url: '/createjob',
+            views: {
+                '': {
+                    templateUrl: 'app/partials/nav.view.html',
+                    controller: 'UserCtrl'
+                },
+                'theView@createjob': {
+                    templateUrl: 'app/partials/jobform.view.html',
+                    controller: 'JobCtrl'
+                }
+            }
+        })
+
 
     $urlRouterProvider.otherwise('/');
     // $locationProvider.html5Mode(true);

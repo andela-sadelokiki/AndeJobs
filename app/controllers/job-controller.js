@@ -20,10 +20,8 @@ exports.listAllJobs = function(req, res) {
     .populate('applicants')
     .exec(function(err, jobs) {
       if (err) {
-        // console.log(err, "error");
         res.send(err);
       }
-      // console.log(jobs, "list of jobs");
       res.json(jobs);
     });
 };

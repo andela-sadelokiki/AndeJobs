@@ -85,6 +85,15 @@ p.home {
     border-radius: 1em;
 }
 
+.createjobform {
+    height: 80%;
+    width: 50%;
+    margin: 0 auto;
+    background-color: whitesmoke;
+    margin-top: 5em;
+    border-radius: 1em;
+}
+
 .collection-item {
     line-height: 3rem !important;
     background-color: rgba(128, 128, 128, 0.27) !important;
@@ -141,4 +150,9 @@ p.home {
 .links {
     height: 445px;
     background-color: dimgrey;
+}
+
+.create {
+    padding-top: 21px;
+    padding-left: 24px
 }
