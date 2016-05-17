@@ -8,5 +8,17 @@ app.factory('JobService', ['$http', 'baseUrl', '$localStorage', function($http, 
             return res;
         });
     };
+    Job.getAll = function() {
+        return $http.get(baseUrl + '/jobs').then(function(res) {
+            return res;
+        });
+    };
+    Job.getOneJob = function(id) {
+        return $http.get(baseUrl + '/jobs/' + id).then(function(res) {
+            return res.data;
+
+        });
+    };
     return Job;
+
 }]);
