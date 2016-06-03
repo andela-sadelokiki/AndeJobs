@@ -7,7 +7,7 @@ var jwt = require('jsonwebtoken');
 var db = require('../../config/config');
 
 exports.signup = function(req, res) {
-  console.log(req, "req here");
+  console.log(req.body, "req here");
   if (!req.body.firstname || !req.body.lastname || !req.body.username || !req.body.email || !req.body.password) {
     console.log(err, 'err');
     return res.status(401).send({
