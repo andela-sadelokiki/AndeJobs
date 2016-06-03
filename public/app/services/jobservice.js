@@ -5,7 +5,7 @@ app.factory('JobService', ['$http', 'baseUrl', '$localStorage', function($http, 
     var Job = {};
     Job.post = function(job) {
         return $http.post(baseUrl + '/jobs', job).then(function(res) {
-            return res;
+            return res.data;
         });
     };
     Job.getAll = function() {
@@ -13,10 +13,9 @@ app.factory('JobService', ['$http', 'baseUrl', '$localStorage', function($http, 
             return res;
         });
     };
-    Job.getOneJob = function(id) {
+    Job.getOne = function(id) {
         return $http.get(baseUrl + '/jobs/' + id).then(function(res) {
             return res.data;
-
         });
     };
     return Job;
