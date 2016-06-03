@@ -70,7 +70,7 @@ app.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', '$locationP
                 },
                 'theView@availablejobs': {
                     templateUrl: 'app/partials/availablejobs.view.html',
-                    controller: 'UserCtrl'
+                    controller: 'JobCtrl'
                 }
             }
         })
@@ -95,7 +95,7 @@ app.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', '$locationP
                     controller: 'UserCtrl'
                 },
                 'theView@createjob': {
-                    templateUrl: 'app/partials/jobform.view.html',
+                    templateUrl: 'app/partials/createjob.view.html',
                     controller: 'JobCtrl'
                 }
             }
@@ -110,19 +110,6 @@ app.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', '$locationP
                 'theView@job': {
                     templateUrl: 'app/partials/job.view.html',
                     controller: 'JobCtrl'
-                }
-            }
-        })
-        .state('apply', {
-            url: '/apply',
-            views: {
-                '': {
-                    templateUrl: 'app/partials/nav.view.html',
-                    controller: 'UserCtrl'
-                },
-                'theView@apply': {
-                    templateUrl: 'app/partials/apply.view.html',
-                    controanuoluwapoller: 'JobCtrl'
                 }
             }
         })
