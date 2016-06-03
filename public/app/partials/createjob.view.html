@@ -1,0 +1,38 @@
+<div class="parallax-container signup">
+    <div class="parallax"><img src="../assets/images/online-job-search.jpg"></div>
+    <div class="createjobform">
+        <div class="row">
+            <h5 class="create">New Job</h5>
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">contacts</i>
+                        <input id="icon_prefix" type="text" ng-model="job.title" class="validate">
+                        <label for="textarea1">Job Title</label>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">mode_edit</i>
+                            <textarea id="textarea1" ng-model="job.description" class="materialize-textarea"></textarea>
+                            <label for="textarea1">Job Description</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">navigation</i>
+                            <input id="icon_prefix" type="text" ng-model="job.location" class="validate">
+                            <label for="icon_prefix">Location</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">warning</i>
+                            <input id="icon_prefix" type="text" ng-model="job.applicationDeadline" class="validate">
+                            <label for="icon_prefix">Deadline</label>
+                        </div>
+                    </div>
+            </form>
+            <a class="waves-effect waves-light btn register" ng-click="addJob()">Create</a>
+            </div>
+        </div>
+    </div>
