@@ -1,7 +1,7 @@
   'use strict';
 
   angular.module('Andejobs')
-      .controller('UserCtrl', ['$scope', 'UserService', '$location', '$rootScope', function($scope, UserService, $location, $rootScope) {
+      .controller('UserCtrl', ['$scope', 'UserService', '$location', '$rootScope', '$window', function($scope, UserService, $location, $rootScope, $window) {
           (function($) {
               $(function() {
                   $('.parallax').parallax();
@@ -9,28 +9,25 @@
               });
           })(jQuery);
 
-          $scope.saveToSessionStorage = function(id, token) {
-            console.log('saving to session storage');
-              $window.sessionStorage.token = token;
-              $window.sessionStorage.userId = id;
-          };
 
-          $scope.signup = function() {
+
+          $rootScope.signup = function() {
               UserService.register($scope.user).then(function(res) {
                   if (res.success === false) {
-                      console.log("Registration failed");
-                      $location.path('/');
+                      console.log("failed");
                   } else {
-                      $rootScope.user = res.config.data;
+                      console.log(res, 'new bee alert!');
+                      $window.sessionStorage.token = res.data.token;
                       $location.path('/dashboard');
+
                   }
               }, function(err) {
-                  console.log("an error occured", err);
-              });
+                  console.log(err, 'an error occured');
+              })
           };
 
-          $scope.signin = function() {
-              UserService.authenticate($scope.user).then(function(res) {
+          $rootScope.signin = function() {
+              UserService.login($scope.user).then(function(res) {
                   if (res.success === false) {
                       console.log("login failed");
                       $location.path('/')
@@ -43,4 +40,15 @@
                   console.log('err', err);
               });
           };
+
+          $scope.currentUser = UserService.currentUser();
+          $rootScope.logout = function() {
+              UserService.logout(function() {
+                  window.location = '/';
+              }, function() {
+                  console.log('failed to logout!')
+              });
+          };
+          $scope.token = $window.sessionStorage.token;
+
       }]);
