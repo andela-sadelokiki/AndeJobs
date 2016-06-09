@@ -39,10 +39,16 @@
             </ul>
             <div id="apply" class="modal modal-fixed-footer">
                 <div class="modal-content">
-                    <h4>{{job.title}}</h4>
-                    <p>A bunch of text</p>
+                    <h4>{{jobInfo.title}}</h4>
+                    <div class="divider"></div>
+                    <p>{{jobInfo.description}}</p>
+                    <h6>{{jobInfo.location}}</h6>
+                    <h6>{{jobInfo.deadline}}</h6>
                 </div>
                 <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Disagree</a>
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree
+                    </a>
                 </div>
             </div>
         </div>
