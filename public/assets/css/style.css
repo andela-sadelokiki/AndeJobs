@@ -1,0 +1,160 @@
+body {
+    display: flex;
+    height: 100%;
+    min-height: 100%;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.nav-wrapper {
+    background-color: darkslategray
+}
+
+a {
+    font-size: small
+}
+
+a.logo {
+    padding-left: 1em;
+    font-size: 2rem
+}
+
+.parallax-container {
+    height: 380px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.icon-block-1 {
+    padding-right: 5em
+}
+
+.signup {
+    min-height: 670px;
+    line-height: 0;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+    /*color: rgba(255, 255, 255, .9);*/
+    /*padding-top: 10em*/
+}
+
+.header {
+    text-align: center;
+    padding-top: 3.5em;
+    color: white;
+    font-size: -webkit-xxx-large;
+    font-family: initial
+}
+
+.btn-home {
+    text-align: center;
+}
+
+p.home {
+    text-align: center;
+    color: white;
+    font-family: cursive;
+    font-size: initial;
+}
+
+.verticalLine {
+    border-left: 4em thick solid grey;
+    /*height: 20000em;*/
+}
+
+.view-jobs {
+    margin-right: 1em
+}
+
+.get-started {
+    margin-left: 1em;
+}
+
+.nav-right {
+    margin-right: 2em;
+}
+
+.signupform {
+    height: 80%;
+    width: 50%;
+    margin: 0 auto;
+    background-color: whitesmoke;
+    margin-top: 5em;
+    border-radius: 1em;
+}
+
+.createjobform {
+    height: 80%;
+    width: 50%;
+    margin: 0 auto;
+    background-color: whitesmoke;
+    margin-top: 5em;
+    border-radius: 1em;
+}
+
+.collection-item {
+    line-height: 3rem !important;
+    background-color: rgba(128, 128, 128, 0.27) !important;
+}
+
+.header-signup {
+    background-color: whitesmoke !important;
+    font-size: x-large;
+    font-family: inherit;
+}
+
+.signuppage {
+    margin-left: 1em;
+    padding-top: 1em;
+}
+
+.register {
+    margin-left: 20em;
+    margin-top: 1em;
+}
+
+.welcome {
+    height: 15em;
+    background-color: #696969;
+    margin-top: -1em;
+    margin-left: -1em;
+}
+
+.links {
+    width: 313px;
+    height: 36em;
+    /*background-color: grey;*/
+    /*background-color: rgba(0, 0, 0, 0.4);*/
+    margin-left: -1em;
+    position: absolute;
+}
+
+.case {
+    margin: 0 auto;
+    height: 150px;
+    width: 150px;
+    background-color: inherit;
+    padding-top: 2em
+}
+
+.name {
+    text-align: center
+}
+
+.search {
+    padding-top: 2em
+}
+
+.links {
+    height: 445px;
+    background-color: dimgrey;
+}
+
+.create {
+    padding-top: 21px;
+    padding-left: 24px
+}
