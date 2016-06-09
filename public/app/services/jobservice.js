@@ -13,7 +13,7 @@ app.factory('JobService', ['$http', 'baseUrl', '$localStorage', function($http, 
             return res;
         });
     };
-    Job.getOne = function(id) {
+    Job.getById = function(id) {
         return $http.get(baseUrl + '/jobs/' + id).then(function(res) {
             return res.data;
         });
